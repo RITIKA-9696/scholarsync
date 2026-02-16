@@ -283,12 +283,12 @@
             if (email === 'admin@scholarsyncverse.com' && password === 'admin123') {
                 showToast('Login successful! Redirecting...', 'success');
                 setTimeout(() => {
-                    window.location.href = 'http://localhost:3001/dashboard.html';
+                    window.location.href = 'http://localhost:3001/index.html';
                 }, 1500);
             } else if (email === 'user@example.com' && password === 'user123') {
                 showToast('Login successful! Redirecting...', 'success');
                 setTimeout(() => {
-                    window.location.href = '/dashboard.html';
+                    window.location.href = '/index.html';
                 }, 1500);
             } else {
                 showToast('Invalid email or password', 'error');

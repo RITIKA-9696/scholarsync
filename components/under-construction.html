@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Under Construction - ScholarSync</title>
+    
+    <!-- Tailwind CSS with Dark Mode -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config for Dark Mode -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        
+        body {
+            font-size: 14px;
+        }
+        
+        /* Dropdown styles */
+        .dropdown-menu {
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+            z-index: 50;
+        }
+        
+        .dropdown-icon.rotate, .mobile-dropdown-icon.rotate {
+            transform: rotate(180deg);
+        }
+        
+        /* Dark mode styles */
+        .dark .bg-white {
+            background-color: #1f2937;
+        }
+        
+        .dark .border-gray-200 {
+            border-color: #374151;
+        }
+        
+        /* Construction animation */
+        @keyframes construction-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .construction-animation {
+            animation: construction-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes hammer-hit {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-15deg); }
+            75% { transform: rotate(15deg); }
+        }
+        
+        .hammer-animation {
+            animation: hammer-hit 1s ease-in-out infinite;
+        }
+        
+        @keyframes gear-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .gear-spin {
+            animation: gear-spin 4s linear infinite;
+        }
+        
+        .gear-spin-slow {
+            animation: gear-spin 6s linear infinite reverse;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- MAIN CONTENT - Under Construction -->
+    <main class="flex-grow pt-14 flex items-center justify-center">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+            <div class="text-center">
+                <!-- Construction Icons with Animation -->
+                <div class="relative mb-8 flex justify-center items-center space-x-4">
+                    <!-- Hammer Icon -->
+                    <div class="hammer-anation">
+                        <i class="fas fa-hammer text-6xl md:text-7xl text-indigo-600 dark:text-indigo-400"></i>
+                    </div>
+                    
+                    <!-- Wrench Icon -->
+                    <div class="gear-spin-slow">
+                        <i class="fas fa-wrench text-5xl md:text-6xl text-yellow-600 dark:text-yellow-500"></i>
+                    </div>
+                    
+                    <!-- Gear Icons -->
+                    <div class="gear-spin">
+                        <i class="fas fa-cog text-5xl md:text-6xl text-gray-600 dark:text-gray-400"></i>
+                    </div>
+                    
+                    <div class="gear-spin-slow absolute -top-4 right-1/4">
+                        <i class="fas fa-cog text-3xl text-indigo-400 dark:text-indigo-600"></i>
+                    </div>
+                    
+                    <div class="gear-spin absolute -bottom-4 left-1/4">
+                        <i class="fas fa-cog text-2xl text-purple-400 dark:text-purple-600"></i>
+                    </div>
+                </div>
+                
+                <!-- Main Title -->
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
+                    🚧 Under Construction 🚧
+                </h1>
+                
+                <!-- Subtitle -->
+                <h2 class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-6">
+                    This page is getting a fresh new look!
+                </h2>
+                
+                <!-- Description -->
+                <div class="max-w-2xl mx-auto mb-8">
+                    <p class="text-gray-600 dark:text-gray-400 text-base md:text-lg mb-4">
+                        We're working hard to bring you something amazing. Our team is putting the final touches on this page, and it will be ready soon.
+                    </p>
+                    
+                    <!-- Progress Bar -->
+                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 mb-2">
+                        <div class="bg-indigo-600 h-2.5 rounded-full w-3/4 construction-animation"></div>
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 text-right">75% Complete</p>
+                </div>
+                
+                <!-- Estimated Launch Date -->
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </div>
+    </main>
+
+    <!-- Notification Modal -->
+    <div id="notifyModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg max-w-md w-full p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Get Notified</h3>
+                <button onclick="hideNotifyModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                We'll email you when this page is ready!
+            </p>
+            
+            <form id="notifyForm" onsubmit="handleNotifySubmit(event)">
+                <div class="mb-4">
+                    <input type="email" 
+                           placeholder="Enter your email" 
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                           required>
+                </div>
+                
+                <div class="flex space-x-2">
+                    <button type="submit" 
+                            class="flex-1 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition-colors">
+                        Notify Me
+                    </button>
+                    <button type="button" 
+                            onclick="hideNotifyModal()"
+                            class="flex-1 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-4 py-2 rounded hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Load Header and Footer Script -->
+    <script src="/components/header-footer.js"></script>
+    
+    <!-- Page Specific Scripts -->
+    <script>
+        // Show notification modal
+        function showNotifyModal() {
+            const modal = document.getElementById('notifyModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+            }
+        }
+        
+        // Hide notification modal
+        function hideNotifyModal() {
+            const modal = document.getElementById('notifyModal');
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+        }
+        
+        // Handle notify form submit
+        function handleNotifySubmit(event) {
+            event.preventDefault();
+            
+            const email = event.target.querySelector('input[type="email"]').value;
+            
+            if (email) {
+                // Show success message
+                showToast('Thanks! We\'ll notify you when the page is ready.', 'success');
+                hideNotifyModal();
+                event.target.reset();
+            } else {
+                showToast('Please enter a valid email address.', 'error');
+            }
+        }
+        
+        // Toast notification function
+        function showToast(message, type = 'success') {
+            // Check if toast container exists
+            let toastContainer = document.getElementById('toastContainer');
+            if (!toastContainer) {
+                toastContainer = document.createElement('div');
+                toastContainer.id = 'toastContainer';
+                toastContainer.className = 'fixed bottom-4 right-4 z-50 space-y-2';
+                document.body.appendChild(toastContainer);
+            }
+            
+            // Create toast
+            const toast = document.createElement('div');
+            toast.className = `px-4 py-2 rounded-lg text-sm shadow-lg transform transition-all duration-300 ${
+                type === 'success' ? 'bg-green-600 text-white' :
+                type === 'error' ? 'bg-red-600 text-white' :
+                'bg-gray-800 text-white'
+            }`;
+            toast.textContent = message;
+            
+            // Add to container
+            toastContainer.appendChild(toast);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                toast.remove();
+                if (toastContainer.children.length === 0) {
+                    toastContainer.remove();
+                }
+            }, 3000);
+        }
+        
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('notifyModal');
+            if (event.target === modal) {
+                hideNotifyModal();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                hideNotifyModal();
+            }
+        });
+    </script>
+</body>
+</html>
