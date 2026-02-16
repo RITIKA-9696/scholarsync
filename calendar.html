@@ -13,9 +13,9 @@
             theme: {
                 extend: {
                     fontSize: {
-                        'xs': '0.75rem',
-                        'sm': '0.875rem',
-                        'base': '1rem',
+                        'xs': '0.7rem',
+                        'sm': '0.8rem',
+                        'base': '0.9rem',
                     }
                 }
             }
@@ -33,42 +33,83 @@
     
     <style>
         * { font-family: 'Inter', sans-serif; }
-        body { font-size: 14px; background-color: #f9fafb; }
-        * { animation: none !important; transition: none !important; }
+        body { 
+            font-size: 13px; 
+            background-color: #f9fafb; 
+        }
         
-        /* Calendar Customization */
-        .fc-event {
-            cursor: pointer;
-            border: none;
-            padding: 2px 4px;
-            font-size: 12px;
+        /* Ultra Compact Calendar */
+        .fc {
+            font-size: 11px !important;
         }
-        .fc-daygrid-day-number {
-            font-size: 13px;
-            color: #374151;
-        }
-        .fc-col-header-cell-cushion {
-            font-size: 13px;
-            font-weight: 600;
-            color: #4f46e5;
-            text-decoration: none;
+        .fc-toolbar {
+            margin-bottom: 8px !important;
         }
         .fc-toolbar-title {
-            font-size: 18px !important;
+            font-size: 14px !important;
             font-weight: 600;
         }
         .fc-button {
             background: #4f46e5 !important;
             border: none !important;
-            font-size: 13px !important;
-            padding: 6px 12px !important;
+            font-size: 10px !important;
+            padding: 2px 8px !important;
             text-transform: capitalize;
+            border-radius: 4px !important;
         }
         .fc-button:hover {
             background: #4338ca !important;
         }
         .fc-button-active {
             background: #3730a3 !important;
+        }
+        .fc-event {
+            cursor: pointer;
+            border: none;
+            padding: 1px 2px;
+            font-size: 9px;
+            margin: 1px 0;
+            border-radius: 2px;
+        }
+        .fc-daygrid-day-number {
+            font-size: 10px;
+            color: #374151;
+            padding: 2px !important;
+        }
+        .fc-col-header-cell-cushion {
+            font-size: 10px;
+            font-weight: 600;
+            color: #4f46e5;
+            text-decoration: none;
+            padding: 4px 0;
+        }
+        .fc-day-today {
+            background: #eef2ff !important;
+        }
+        
+        /* Very compact calendar cells */
+        .fc-daygrid-day-frame {
+            min-height: 50px !important;
+            height: 50px !important;
+        }
+        .fc-daygrid-day-events {
+            min-height: 25px !important;
+            max-height: 30px !important;
+            overflow-y: hidden;
+        }
+        .fc-daygrid-day-top {
+            flex-direction: row !important;
+            justify-content: space-between;
+            padding: 1px 2px !important;
+        }
+        .fc-daygrid-day-bottom {
+            display: none !important;
+        }
+        
+        /* Hide extra events indicator */
+        .fc-daygrid-more-link {
+            font-size: 8px;
+            padding: 0 2px;
         }
         
         /* Dark mode calendar */
@@ -90,11 +131,28 @@
         }
         
         /* Event colors */
-        .event-workshop { background: #8b5cf6; color: white; }
-        .event-course { background: #10b981; color: white; }
-        .event-webinar { background: #f59e0b; color: white; }
-        .event-mentoring { background: #3b82f6; color: white; }
-        .event-consulting { background: #ec4899; color: white; }
+        .event-workshop { background: #8b5cf6; border-color: #7c3aed; color: white; }
+        .event-course { background: #10b981; border-color: #059669; color: white; }
+        .event-webinar { background: #f59e0b; border-color: #d97706; color: white; }
+        .event-mentoring { background: #3b82f6; border-color: #2563eb; color: white; }
+        .event-consulting { background: #ec4899; border-color: #db2777; color: white; }
+        
+        /* Tab styles */
+        .tab-active {
+            color: #4f46e5;
+            border-bottom: 2px solid #4f46e5;
+        }
+        
+        /* Compact cards */
+        .compact-card {
+            padding: 10px;
+        }
+        
+        /* Hide animations */
+        * { 
+            animation: none !important; 
+            transition: none !important; 
+        }
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
@@ -102,383 +160,206 @@
     <div id="header-placeholder"></div>
 
     <!-- Main Content -->
-    <main class="pt-14 pb-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-            <!-- Page Header -->
-            <div class="mb-6">
-                <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                    Events <span class="text-indigo-600">Calendar</span>
+    <main class="pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 mt-4">
+            <!-- Page Header - Compact -->
+            <div class="mb-3">
+                <h1 class="text-xl font-bold text-gray-900 dark:text-white flex items-center">
+                    <i class="fas fa-calendar-alt text-indigo-600 mr-2 text-sm"></i>
+                    Events Calendar
                 </h1>
-                <p class="text-sm text-gray-600 dark:text-gray-400">
-                    Stay updated with all upcoming workshops, courses, webinars, and mentoring sessions.
-                </p>
             </div>
 
-            <!-- Calendar View Tabs -->
-            <div class="flex border-b border-gray-200 dark:border-gray-700 mb-6">
-                <button class="px-4 py-2 text-sm font-medium text-indigo-600 border-b-2 border-indigo-600" id="tabMonth">Month View</button>
-                <button class="px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-indigo-600" id="tabWeek">Week View</button>
-                <button class="px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-indigo-600" id="tabDay">Day View</button>
-                <button class="px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-indigo-600" id="tabList">List View</button>
+            <!-- Calendar View Tabs - Compact -->
+            <div class="flex border-b border-gray-200 dark:border-gray-700 mb-3">
+                <button class="tab-btn px-3 py-1.5 text-xs font-medium text-indigo-600 border-b-2 border-indigo-600" data-view="dayGridMonth">Month</button>
+                <button class="tab-btn px-3 py-1.5 text-xs font-medium text-gray-600 dark:text-gray-400 hover:text-indigo-600" data-view="timeGridWeek">Week</button>
+                <button class="tab-btn px-3 py-1.5 text-xs font-medium text-gray-600 dark:text-gray-400 hover:text-indigo-600" data-view="listWeek">List</button>
             </div>
 
-            <!-- Calendar Container -->
-            <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 mb-8">
-                <div id="calendar"></div>
+            <!-- Calendar Container - Very Compact -->
+            <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-2 mb-4">
+                <div id="calendar" style="height: 320px;"></div>
             </div>
 
-            <!-- Upcoming Events List -->
-            <div class="grid lg:grid-cols-3 gap-6">
+            <!-- Quick Events Overview - Compact Grid -->
+            <div class="grid grid-cols-2 gap-3 mb-4">
                 <!-- Today's Events -->
-                <div class="lg:col-span-1">
-                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
-                        <h2 class="text-base font-bold mb-3 flex items-center">
-                            <i class="fas fa-calendar-day text-indigo-600 mr-2"></i>
-                            Today's Events
-                        </h2>
-                        <div class="space-y-3" id="todayEvents">
-                            <!-- Loaded via JavaScript -->
-                        </div>
+                <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3">
+                    <h2 class="text-xs font-bold mb-2 flex items-center">
+                        <i class="fas fa-calendar-day text-indigo-600 mr-1 text-xs"></i>
+                        Today
+                    </h2>
+                    <div class="space-y-2" id="todayEvents">
+                        <div class="text-xs text-gray-500 text-center py-1">Loading...</div>
                     </div>
                 </div>
 
-                <!-- Upcoming This Week -->
-                <div class="lg:col-span-2">
-                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
-                        <h2 class="text-base font-bold mb-3 flex items-center">
-                            <i class="fas fa-calendar-week text-indigo-600 mr-2"></i>
-                            This Week's Schedule
-                        </h2>
-                        <div class="space-y-2" id="weekEvents">
-                            <!-- Loaded via JavaScript -->
-                        </div>
+                <!-- Upcoming Events -->
+                <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3">
+                    <h2 class="text-xs font-bold mb-2 flex items-center">
+                        <i class="fas fa-calendar-week text-indigo-600 mr-1 text-xs"></i>
+                        This Week
+                    </h2>
+                    <div class="space-y-2" id="weekEvents">
+                        <div class="text-xs text-gray-500 text-center py-1">Loading...</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Event Categories Legend -->
-            <div class="mt-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
-                <h3 class="text-sm font-semibold mb-3">Event Categories</h3>
-                <div class="flex flex-wrap gap-4">
+            <!-- Event Categories Legend - Mini -->
+            <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-2">
+                <div class="flex flex-wrap gap-2">
                     <div class="flex items-center">
-                        <span class="w-3 h-3 rounded-full bg-purple-600 mr-2"></span>
-                        <span class="text-xs">Workshops</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="w-3 h-3 rounded-full bg-green-600 mr-2"></span>
-                        <span class="text-xs">Courses</span>
+                        <span class="w-2 h-2 rounded-full bg-purple-600 mr-1"></span>
+                        <span class="text-xs">Workshop</span>
                     </div>
                     <div class="flex items-center">
-                        <span class="w-3 h-3 rounded-full bg-orange-500 mr-2"></span>
-                        <span class="text-xs">Webinars</span>
+                        <span class="w-2 h-2 rounded-full bg-green-600 mr-1"></span>
+                        <span class="text-xs">Course</span>
                     </div>
                     <div class="flex items-center">
-                        <span class="w-3 h-3 rounded-full bg-blue-600 mr-2"></span>
-                        <span class="text-xs">Mentoring</span>
+                        <span class="w-2 h-2 rounded-full bg-orange-500 mr-1"></span>
+                        <span class="text-xs">Webinar</span>
                     </div>
                     <div class="flex items-center">
-                        <span class="w-3 h-3 rounded-full bg-pink-600 mr-2"></span>
-                        <span class="text-xs">Consulting</span>
+                        <span class="w-2 h-2 rounded-full bg-blue-600 mr-1"></span>
+                        <span class="text-xs">Mentor</span>
                     </div>
-                </div>
-            </div>
-
-            <!-- Subscription Card -->
-            <div class="mt-6 bg-indigo-50 dark:bg-indigo-900 border border-indigo-200 dark:border-indigo-700 rounded-lg p-4">
-                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                    <div>
-                        <h3 class="text-sm font-bold mb-1">Never Miss an Event</h3>
-                        <p class="text-xs text-gray-600 dark:text-gray-300">Subscribe to get calendar updates and reminders</p>
-                    </div>
-                    <div class="flex gap-2">
-                        <button class="bg-indigo-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-indigo-700">
-                            <i class="fab fa-google mr-2"></i>Google Calendar
-                        </button>
-                        <button class="bg-gray-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-gray-700">
-                            <i class="fas fa-download mr-2"></i>ICS
-                        </button>
+                    <div class="flex items-center">
+                        <span class="w-2 h-2 rounded-full bg-pink-600 mr-1"></span>
+                        <span class="text-xs">Consult</span>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Event Details Modal -->
-    <div id="eventModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white" id="modalTitle">Event Details</h3>
+    <!-- Event Details Modal - Compact -->
+    <div id="eventModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 p-3">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 max-w-sm w-full">
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="text-sm font-bold text-gray-900 dark:text-white" id="modalTitle">Event Details</h3>
                 <button onclick="closeEventModal()" class="text-gray-400 hover:text-gray-600">
-                    <i class="fas fa-times"></i>
+                    <i class="fas fa-times text-sm"></i>
                 </button>
             </div>
-            <div id="modalContent" class="space-y-3">
+            <div id="modalContent" class="space-y-2 text-xs">
                 <!-- Content filled by JavaScript -->
             </div>
-            <div class="mt-4 flex gap-2">
-                <button class="flex-1 bg-indigo-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-indigo-700" onclick="addToCalendar()">
-                    Add to Calendar
+            <div class="mt-3 flex gap-2">
+                <button class="flex-1 bg-indigo-600 text-white px-2 py-1.5 rounded text-xs font-medium hover:bg-indigo-700" onclick="addToCalendar()">
+                    Add
                 </button>
-                <button class="flex-1 border border-indigo-600 text-indigo-600 px-4 py-2 rounded text-sm font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900">
+                <button class="flex-1 border border-indigo-600 text-indigo-600 px-2 py-1.5 rounded text-xs font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900">
                     Register
                 </button>
             </div>
         </div>
     </div>
 
-   <!-- ========== FOOTER - Smaller ========== -->
     <!-- Footer Placeholder -->
     <div id="footer-placeholder"></div>
 
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
     <script src="/components/header-footer.js"></script>
-
-    <!-- Scripts -->
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
-    <script src="./js/common.js"></script>
     
     <script>
-        // Initialize Calendar
+        // Calendar variable (global)
+        let calendar;
+        
+        // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
+            initCalendar();
+            setupTabs();
+            loadEventsData();
+        });
+
+        // Initialize Calendar - Ultra Compact
+        function initCalendar() {
+            const calendarEl = document.getElementById('calendar');
+            
+            calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                    right: ''
                 },
                 buttonText: {
-                    today: 'Today',
-                    month: 'Month',
-                    week: 'Week',
-                    day: 'Day',
-                    list: 'List'
+                    today: 'Today'
                 },
+                height: 280,
+                contentHeight: 250,
+                aspectRatio: 1.2,
+                dayMaxEvents: 2,
+                dayMaxEventRows: 2,
                 events: [
-                    // Workshops
-                    {
-                        title: 'System Design Masterclass',
-                        start: '2024-03-25T10:00:00',
-                        end: '2024-03-25T13:00:00',
-                        className: 'event-workshop',
-                        extendedProps: {
-                            type: 'Workshop',
-                            instructor: 'Satish Kale',
-                            price: '₹2,999',
-                            seats: '24 left',
-                            description: 'Learn to design scalable systems like Netflix, Uber, and Twitter from scratch.'
-                        }
-                    },
-                    {
-                        title: 'Database Internals Deep Dive',
-                        start: '2024-03-28T14:00:00',
-                        end: '2024-03-28T17:00:00',
-                        className: 'event-workshop',
-                        extendedProps: {
-                            type: 'Workshop',
-                            instructor: 'Satish Kale',
-                            price: '₹3,499',
-                            seats: '18 left',
-                            description: 'Understand B-Trees, LSM Trees, MVCC, and transaction isolation levels.'
-                        }
-                    },
-                    
-                    // Courses
-                    {
-                        title: 'Distributed Systems Course (Week 1)',
-                        start: '2024-03-20T18:00:00',
-                        end: '2024-03-20T20:00:00',
-                        className: 'event-course',
-                        extendedProps: {
-                            type: 'Course',
-                            instructor: 'Satish Kale',
-                            price: '₹3,999',
-                            module: 'Week 1: Fundamentals',
-                            description: 'Introduction to distributed systems, CAP theorem, and consistency models.'
-                        }
-                    },
-                    {
-                        title: 'Microservices Architecture Course',
-                        start: '2024-03-22T10:00:00',
-                        end: '2024-03-22T12:00:00',
-                        className: 'event-course',
-                        extendedProps: {
-                            type: 'Course',
-                            instructor: 'Satish Kale',
-                            price: '₹2,499',
-                            module: 'Module 2: Service Discovery',
-                            description: 'Deep dive into service discovery, API gateways, and inter-service communication.'
-                        }
-                    },
-                    
-                    // Webinars
-                    {
-                        title: 'Free Webinar: Caching Strategies',
-                        start: '2024-03-21T16:00:00',
-                        end: '2024-03-21T17:30:00',
-                        className: 'event-webinar',
-                        extendedProps: {
-                            type: 'Webinar',
-                            instructor: 'Satish Kale',
-                            price: 'Free',
-                            seats: 'Unlimited',
-                            description: 'Learn about different caching strategies: cache aside, write through, and write behind.'
-                        }
-                    },
-                    {
-                        title: 'Webinar: System Design Interview Tips',
-                        start: '2024-03-26T15:00:00',
-                        end: '2024-03-26T16:30:00',
-                        className: 'event-webinar',
-                        extendedProps: {
-                            type: 'Webinar',
-                            instructor: 'Satish Kale',
-                            price: 'Free',
-                            seats: 'Unlimited',
-                            description: 'Tips and tricks for cracking system design interviews at top tech companies.'
-                        }
-                    },
-                    
-                    // Mentoring Sessions
-                    {
-                        title: '1:1 Mentoring - Career Guidance',
-                        start: '2024-03-19T11:00:00',
-                        end: '2024-03-19T12:00:00',
-                        className: 'event-mentoring',
-                        extendedProps: {
-                            type: 'Mentoring',
-                            instructor: 'Satish Kale',
-                            price: '₹2,499',
-                            attendee: 'Private Session',
-                            description: 'One-on-one career guidance session.'
-                        }
-                    },
-                    {
-                        title: '1:1 Mentoring - Technical',
-                        start: '2024-03-23T09:00:00',
-                        end: '2024-03-23T10:30:00',
-                        className: 'event-mentoring',
-                        extendedProps: {
-                            type: 'Mentoring',
-                            instructor: 'Satish Kale',
-                            price: '₹3,499',
-                            attendee: 'Private Session',
-                            description: 'Technical mentoring on system design and databases.'
-                        }
-                    },
-                    
-                    // Consulting
-                    {
-                        title: 'Tech Consulting - Startup A',
-                        start: '2024-03-27T14:00:00',
-                        end: '2024-03-27T16:00:00',
-                        className: 'event-consulting',
-                        extendedProps: {
-                            type: 'Consulting',
-                            instructor: 'Satish Kale',
-                            price: 'Custom',
-                            client: 'Confidential',
-                            description: 'Architecture review and scaling consultation.'
-                        }
-                    },
-                    
                     // March 2024 Events
-                    {
-                        title: 'System Design Workshop',
-                        start: '2024-03-01T10:00:00',
-                        end: '2024-03-01T13:00:00',
-                        className: 'event-workshop'
-                    },
-                    {
-                        title: 'Database Internals Course',
-                        start: '2024-03-05T14:00:00',
-                        end: '2024-03-05T17:00:00',
-                        className: 'event-course'
-                    },
-                    {
-                        title: 'Free Webinar: Redis Deep Dive',
-                        start: '2024-03-08T16:00:00',
-                        end: '2024-03-08T17:30:00',
-                        className: 'event-webinar'
-                    },
-                    {
-                        title: 'Mentoring Session',
-                        start: '2024-03-10T09:00:00',
-                        end: '2024-03-10T10:00:00',
-                        className: 'event-mentoring'
-                    },
-                    {
-                        title: 'Kafka Internals Workshop',
-                        start: '2024-03-12T10:00:00',
-                        end: '2024-03-12T13:00:00',
-                        className: 'event-workshop'
-                    },
-                    {
-                        title: 'Consulting - Project Review',
-                        start: '2024-03-15T15:00:00',
-                        end: '2024-03-15T17:00:00',
-                        className: 'event-consulting'
-                    },
-                    {
-                        title: 'Microservices Course',
-                        start: '2024-03-18T11:00:00',
-                        end: '2024-03-18T13:00:00',
-                        className: 'event-course'
-                    }
+                    { title: 'System Design', start: '2024-03-01', className: 'event-workshop', extendedProps: { type: 'Workshop', time: '10am-1pm' } },
+                    { title: 'Database Course', start: '2024-03-05', className: 'event-course', extendedProps: { type: 'Course', time: '2pm-5pm' } },
+                    { title: 'Redis Webinar', start: '2024-03-08', className: 'event-webinar', extendedProps: { type: 'Webinar', time: '4pm-5:30pm' } },
+                    { title: 'Mentoring', start: '2024-03-10', className: 'event-mentoring', extendedProps: { type: 'Mentoring', time: '9am-10am' } },
+                    { title: 'Kafka Workshop', start: '2024-03-12', className: 'event-workshop', extendedProps: { type: 'Workshop', time: '10am-1pm' } },
+                    { title: 'Consulting', start: '2024-03-15', className: 'event-consulting', extendedProps: { type: 'Consulting', time: '3pm-5pm' } },
+                    { title: 'Microservices', start: '2024-03-18', className: 'event-course', extendedProps: { type: 'Course', time: '11am-1pm' } },
+                    { title: 'Career Mentoring', start: '2024-03-19', className: 'event-mentoring', extendedProps: { type: 'Mentoring', time: '11am-12pm' } },
+                    { title: 'Distributed Systems', start: '2024-03-20', className: 'event-course', extendedProps: { type: 'Course', time: '6pm-8pm' } },
+                    { title: 'Caching Webinar', start: '2024-03-21', className: 'event-webinar', extendedProps: { type: 'Webinar', time: '4pm-5:30pm' } },
+                    { title: 'Microservices', start: '2024-03-22', className: 'event-course', extendedProps: { type: 'Course', time: '10am-12pm' } },
+                    { title: 'Tech Mentoring', start: '2024-03-23', className: 'event-mentoring', extendedProps: { type: 'Mentoring', time: '9am-10:30am' } },
+                    { title: 'System Design', start: '2024-03-25', className: 'event-workshop', extendedProps: { type: 'Workshop', time: '10am-1pm' } },
+                    { title: 'Interview Tips', start: '2024-03-26', className: 'event-webinar', extendedProps: { type: 'Webinar', time: '3pm-4:30pm' } },
+                    { title: 'Consulting', start: '2024-03-27', className: 'event-consulting', extendedProps: { type: 'Consulting', time: '2pm-4pm' } },
+                    { title: 'Database Internals', start: '2024-03-28', className: 'event-workshop', extendedProps: { type: 'Workshop', time: '2pm-5pm' } }
                 ],
                 eventClick: function(info) {
                     showEventDetails(info.event);
                 },
-                height: 'auto',
-                aspectRatio: 1.8
+                eventDidMount: function(info) {
+                    info.el.title = `${info.event.title} - ${info.event.extendedProps.time || ''}`;
+                }
             });
             
             calendar.render();
+        }
 
-            // Tab switching
-            document.getElementById('tabMonth').addEventListener('click', function() {
-                calendar.changeView('dayGridMonth');
+        // Setup tab switching
+        function setupTabs() {
+            const tabs = document.querySelectorAll('.tab-btn');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    tabs.forEach(t => {
+                        t.classList.remove('text-indigo-600', 'border-b-2', 'border-indigo-600');
+                        t.classList.add('text-gray-600', 'dark:text-gray-400');
+                    });
+                    
+                    this.classList.add('text-indigo-600', 'border-b-2', 'border-indigo-600');
+                    this.classList.remove('text-gray-600', 'dark:text-gray-400');
+                    
+                    const view = this.getAttribute('data-view');
+                    if (calendar) {
+                        calendar.changeView(view);
+                    }
+                });
             });
-            document.getElementById('tabWeek').addEventListener('click', function() {
-                calendar.changeView('timeGridWeek');
-            });
-            document.getElementById('tabDay').addEventListener('click', function() {
-                calendar.changeView('timeGridDay');
-            });
-            document.getElementById('tabList').addEventListener('click', function() {
-                calendar.changeView('listWeek');
-            });
-
-            // Load today's events
-            loadTodaysEvents();
-            loadWeekEvents();
-        });
+        }
 
         // Show event details modal
         function showEventDetails(event) {
             const props = event.extendedProps;
-            const start = event.start.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-            const end = event.end.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            const date = event.start ? event.start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'TBD';
             
             document.getElementById('modalTitle').textContent = event.title;
             
-            let attendees = '';
-            if (props.type === 'Mentoring') {
-                attendees = `<p class="text-sm"><span class="font-medium">Attendee:</span> ${props.attendee || 'Private Session'}</p>`;
-            }
-            
             document.getElementById('modalContent').innerHTML = `
-                <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded">
-                    <p class="text-sm"><span class="font-medium">Type:</span> ${props.type || 'Event'}</p>
-                    <p class="text-sm"><span class="font-medium">Date:</span> ${event.start.toLocaleDateString()}</p>
-                    <p class="text-sm"><span class="font-medium">Time:</span> ${start} - ${end}</p>
-                    <p class="text-sm"><span class="font-medium">Instructor:</span> ${props.instructor || 'Satish Kale'}</p>
-                    <p class="text-sm"><span class="font-medium">Price:</span> ${props.price || 'Free'}</p>
-                    ${props.seats ? `<p class="text-sm"><span class="font-medium">Seats:</span> ${props.seats}</p>` : ''}
-                    ${attendees}
-                    ${props.module ? `<p class="text-sm"><span class="font-medium">Module:</span> ${props.module}</p>` : ''}
-                    <p class="text-sm mt-2">${props.description || 'Join this session to learn from industry expert.'}</p>
+                <div class="bg-gray-50 dark:bg-gray-700 p-2 rounded space-y-1">
+                    <p><span class="font-medium">Type:</span> ${props.type || 'Event'}</p>
+                    <p><span class="font-medium">Date:</span> ${date}</p>
+                    <p><span class="font-medium">Time:</span> ${props.time || 'TBD'}</p>
+                    <p><span class="font-medium">Instructor:</span> Satish Kale</p>
                 </div>
             `;
             
@@ -492,81 +373,93 @@
 
         // Add to calendar
         window.addToCalendar = function() {
-            showToast('Event added to your calendar!', 'success');
+            showToast('Added to calendar!', 'success');
+            closeEventModal();
         };
 
-        // Load today's events
-        function loadTodaysEvents() {
-            const today = new Date().toLocaleDateString();
-            const events = [
-                {
-                    time: '10:00 AM - 1:00 PM',
-                    title: 'System Design Masterclass',
-                    type: 'Workshop',
-                    seats: '24 seats left'
-                },
-                {
-                    time: '4:00 PM - 5:30 PM',
-                    title: 'Free Webinar: Caching Strategies',
-                    type: 'Webinar',
-                    seats: 'Unlimited'
-                }
-            ];
-            
-            const container = document.getElementById('todayEvents');
-            container.innerHTML = events.map(event => `
-                <div class="border border-gray-200 dark:border-gray-700 rounded p-3 hover:border-indigo-600 cursor-pointer">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <span class="text-xs text-gray-500">${event.time}</span>
-                            <h4 class="text-sm font-medium mt-1">${event.title}</h4>
-                            <div class="flex items-center mt-1">
-                                <span class="text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded">${event.type}</span>
-                                <span class="text-xs text-gray-500 ml-2">${event.seats}</span>
-                            </div>
+        // Load events data for side panels
+        function loadEventsData() {
+            // Today's events
+            document.getElementById('todayEvents').innerHTML = `
+                <div class="border border-gray-200 dark:border-gray-700 rounded p-2 hover:border-indigo-600 cursor-pointer" onclick="showQuickEvent('System Design', 'Workshop', '10am')">
+                    <div class="text-xs">
+                        <span class="font-medium">10:00 AM</span>
+                        <div class="flex justify-between items-center mt-1">
+                            <span>System Design</span>
+                            <span class="bg-indigo-100 text-indigo-700 px-1 rounded text-2xs">Workshop</span>
                         </div>
-                        <button class="text-indigo-600 text-xs font-medium">Register</button>
                     </div>
                 </div>
-            `).join('');
+                <div class="border border-gray-200 dark:border-gray-700 rounded p-2 hover:border-indigo-600 cursor-pointer" onclick="showQuickEvent('Caching Webinar', 'Webinar', '4pm')">
+                    <div class="text-xs">
+                        <span class="font-medium">4:00 PM</span>
+                        <div class="flex justify-between items-center mt-1">
+                            <span>Caching Webinar</span>
+                            <span class="bg-orange-100 text-orange-700 px-1 rounded text-2xs">Webinar</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Week events
+            document.getElementById('weekEvents').innerHTML = `
+                <div class="flex items-center justify-between text-xs py-1 border-b border-gray-100 dark:border-gray-700">
+                    <span class="text-gray-500">Mon 25</span>
+                    <span class="font-medium">10am</span>
+                    <span class="flex-1 ml-1">System Design</span>
+                    <span class="bg-indigo-100 text-indigo-700 px-1 rounded">Workshop</span>
+                </div>
+                <div class="flex items-center justify-between text-xs py-1 border-b border-gray-100 dark:border-gray-700">
+                    <span class="text-gray-500">Tue 26</span>
+                    <span class="font-medium">3pm</span>
+                    <span class="flex-1 ml-1">Interview Tips</span>
+                    <span class="bg-orange-100 text-orange-700 px-1 rounded">Webinar</span>
+                </div>
+                <div class="flex items-center justify-between text-xs py-1 border-b border-gray-100 dark:border-gray-700">
+                    <span class="text-gray-500">Wed 27</span>
+                    <span class="font-medium">2pm</span>
+                    <span class="flex-1 ml-1">Consulting</span>
+                    <span class="bg-pink-100 text-pink-700 px-1 rounded">Consult</span>
+                </div>
+                <div class="flex items-center justify-between text-xs py-1">
+                    <span class="text-gray-500">Thu 28</span>
+                    <span class="font-medium">2pm</span>
+                    <span class="flex-1 ml-1">Database</span>
+                    <span class="bg-indigo-100 text-indigo-700 px-1 rounded">Workshop</span>
+                </div>
+            `;
         }
 
-        // Load week events
-        function loadWeekEvents() {
-            const events = [
-                { day: 'Monday, Mar 25', time: '10:00 AM', title: 'System Design Masterclass', type: 'Workshop' },
-                { day: 'Tuesday, Mar 26', time: '3:00 PM', title: 'Webinar: Interview Tips', type: 'Webinar' },
-                { day: 'Wednesday, Mar 27', time: '2:00 PM', title: 'Tech Consulting', type: 'Consulting' },
-                { day: 'Thursday, Mar 28', time: '2:00 PM', title: 'Database Internals', type: 'Workshop' },
-                { day: 'Friday, Mar 29', time: '11:00 AM', title: 'Mentoring Session', type: 'Mentoring' }
-            ];
-            
-            const container = document.getElementById('weekEvents');
-            container.innerHTML = events.map(event => `
-                <div class="flex items-center justify-between py-2 border-b border-gray-100 dark:border-gray-700 last:border-0">
-                    <div class="flex items-center">
-                        <div class="w-20 text-xs text-gray-500">${event.day}</div>
-                        <div class="w-16 text-xs font-medium">${event.time}</div>
-                        <div class="flex-1">
-                            <span class="text-sm font-medium">${event.title}</span>
-                            <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-2 py-0.5 rounded ml-2">${event.type}</span>
-                        </div>
-                    </div>
-                    <button class="text-indigo-600 text-xs font-medium hover:underline">Details</button>
-                </div>
-            `).join('');
+        // Show quick event preview
+        window.showQuickEvent = function(title, type, time) {
+            showToast(`${title} at ${time}`, 'info');
         }
 
         // Toast notification
         function showToast(message, type) {
             const toast = document.createElement('div');
-            toast.className = `fixed bottom-4 right-4 px-4 py-2 rounded-lg text-sm shadow-lg z-50 ${
+            toast.className = `fixed bottom-4 right-4 px-2 py-1.5 rounded text-xs shadow-lg z-50 ${
                 type === 'success' ? 'bg-green-600 text-white' : 'bg-blue-600 text-white'
             }`;
             toast.textContent = message;
             document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
+            setTimeout(() => toast.remove(), 1500);
         }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('eventModal');
+            if (event.target === modal) {
+                closeEventModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeEventModal();
+            }
+        });
     </script>
 </body>
 </html>

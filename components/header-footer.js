@@ -1,4 +1,4 @@
-// ========== HEADER AND FOOTER LOADER ==========
+// ========== HEADER AND FOOTER LOADER WITH ACTIVE STATE ==========
 
 // Load header and footer when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
@@ -23,12 +23,13 @@ function loadHeader() {
             // Initialize header functionality after it's loaded
             initializeHeader();
             
-            // Set active page
-            setActivePage();
+            // Set active page based on current URL
+            setTimeout(() => {
+                setActivePage();
+            }, 100); // Small delay to ensure DOM is ready
         })
         .catch(error => {
             console.error('Error loading header:', error);
-            // Fallback header if file not found
             headerPlaceholder.innerHTML = getFallbackHeader();
             initializeHeader();
             setActivePage();
@@ -51,7 +52,6 @@ function loadFooter() {
         })
         .catch(error => {
             console.error('Error loading footer:', error);
-            // Fallback footer if file not found
             footerPlaceholder.innerHTML = getFallbackFooter();
         });
 }
@@ -168,21 +168,53 @@ function initializeHeader() {
 }
 
 function setActivePage() {
+    // Get current page path
     const currentPath = window.location.pathname;
     const filename = currentPath.split('/').pop() || 'index.html';
     
-    // Remove active class from all
+    console.log('Setting active page for:', filename); // Debug log
+    
+    // Remove active class from all nav links
     document.querySelectorAll('.nav-link, .nav-link-mobile').forEach(link => {
         link.classList.remove('active', 'text-indigo-600', 'dark:text-indigo-400');
         link.classList.add('text-gray-700', 'dark:text-gray-300');
+        
+        // Remove any inline styles
+        link.style.removeProperty('color');
     });
     
     // Add active class to current page link
     document.querySelectorAll('.nav-link, .nav-link-mobile').forEach(link => {
         const href = link.getAttribute('href');
-        if (href === filename || (filename === '' && href === '/')) {
+        
+        // Check if this link matches the current page
+        if (href === filename || 
+            (filename === '' && href === '/') || 
+            (filename === 'index.html' && href === '/') ||
+            currentPath.endsWith(href)) {
+            
+            console.log('Active link found:', href); // Debug log
+            
             link.classList.add('active', 'text-indigo-600', 'dark:text-indigo-400');
             link.classList.remove('text-gray-700', 'dark:text-gray-300');
+            
+            // For dropdown parent buttons, we don't change their color
+            if (link.classList.contains('dropdown-btn')) {
+                // Handle dropdown parent if needed
+            }
+        }
+    });
+    
+    // Also check for dropdown items
+    document.querySelectorAll('.dropdown-menu a').forEach(link => {
+        const href = link.getAttribute('href');
+        
+        if (href === filename || 
+            (filename === '' && href === '/') || 
+            (filename === 'index.html' && href === '/') ||
+            currentPath.endsWith(href)) {
+            
+            link.classList.add('text-indigo-600', 'dark:text-indigo-400', 'font-medium');
         }
     });
 }
@@ -195,9 +227,9 @@ function getFallbackHeader() {
                     <div class="flex justify-between items-center h-14">
                         <a href="/" class="text-xl font-bold text-indigo-600 dark:text-indigo-400">ScholarSync</a>
                         <div class="hidden md:flex items-center space-x-5">
-                            <a href="/" class="text-sm text-gray-700 dark:text-gray-300">Home</a>
-                            <a href="/about.html" class="text-sm text-gray-700 dark:text-gray-300">About</a>
-                            <a href="/blog.html" class="text-sm text-gray-700 dark:text-gray-300">Blogs</a>
+                            <a href="/" class="nav-link text-sm text-gray-700 dark:text-gray-300 hover:text-indigo-600">Home</a>
+                            <a href="/about.html" class="nav-link text-sm text-gray-700 dark:text-gray-300 hover:text-indigo-600">About</a>
+                            <a href="/blog.html" class="nav-link text-sm text-gray-700 dark:text-gray-300 hover:text-indigo-600">Blogs</a>
                             <button onclick="toggleTheme()" class="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg">
                                 <i class="fas fa-sun dark:hidden"></i>
                                 <i class="fas fa-moon hidden dark:inline"></i>
@@ -223,6 +255,11 @@ function getFallbackFooter() {
     `;
 }
 
+// Also run when URL changes (for single page apps)
+window.addEventListener('popstate', function() {
+    setTimeout(setActivePage, 100);
+});
+
 // Toast notification utility
 window.showToast = function(message, type = 'success') {
     let toastContainer = document.getElementById('toastContainer');
@@ -234,7 +271,7 @@ window.showToast = function(message, type = 'success') {
     }
     
     const toast = document.createElement('div');
-    toast.className = `px-4 py-2 rounded-lg text-sm shadow-lg ${
+    toast.className = `px-4 py-2 rounded-lg text-sm shadow-lg transform transition-all duration-300 ${
         type === 'success' ? 'bg-green-600 text-white' :
         type === 'error' ? 'bg-red-600 text-white' :
         'bg-gray-800 text-white'
