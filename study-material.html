@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Materials - ScholarSync</title>
+    
+    <!-- Tailwind CSS with Dark Mode -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontSize: {
+                        'xs': '0.75rem',
+                        'sm': '0.875rem',
+                        'base': '1rem',
+                        'lg': '1.125rem',
+                        'xl': '1.25rem',
+                        '2xl': '1.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { font-size: 14px; }
+        * { animation: none !important; transition: none !important; }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+   <!-- ========== Header ========== -->
+    <div id="header-placeholder"></div>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="pt-14 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                    Study <span class="text-indigo-600 dark:text-indigo-400">Materials</span>
+                </h1>
+                <p class="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                    Comprehensive notes, code samples, e-books, and video lectures. 
+                    Free resources for everyone, premium content for deeper learning.
+                </p>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-3 gap-4 max-w-2xl mx-auto mb-8">
+                <div class="text-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+                    <div class="text-xl font-bold text-indigo-600">50+</div>
+                    <div class="text-xs text-gray-600 dark:text-gray-400">Free Resources</div>
+                </div>
+                <div class="text-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+                    <div class="text-xl font-bold text-indigo-600">30+</div>
+                    <div class="text-xs text-gray-600 dark:text-gray-400">Premium Items</div>
+                </div>
+                <div class="text-center p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+                    <div class="text-xl font-bold text-indigo-600">10k+</div>
+                    <div class="text-xs text-gray-600 dark:text-gray-400">Downloads</div>
+                </div>
+            </div>
+
+            <!-- Filters and Search -->
+            <div class="flex flex-wrap justify-between items-center mb-6">
+                <div class="flex gap-2 flex-wrap">
+                    <button class="px-3 py-1 bg-indigo-600 text-white rounded-full text-xs">All</button>
+                    <button class="px-3 py-1 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs border border-gray-200 dark:border-gray-600">E-Books</button>
+                    <button class="px-3 py-1 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs border border-gray-200 dark:border-gray-600">Video Lectures</button>
+                    <button class="px-3 py-1 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs border border-gray-200 dark:border-gray-600">Code Samples</button>
+                    <button class="px-3 py-1 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs border border-gray-200 dark:border-gray-600">Cheat Sheets</button>
+                    <button class="px-3 py-1 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-xs border border-gray-200 dark:border-gray-600">Interview Prep</button>
+                </div>
+                <div class="flex items-center gap-2 mt-2 sm:mt-0">
+                    <div class="relative">
+                        <i class="fas fa-search absolute left-3 top-2 text-gray-400 text-xs"></i>
+                        <input type="text" placeholder="Search materials..." 
+                               class="pl-8 pr-3 py-1.5 text-xs border border-gray-200 dark:border-gray-600 rounded bg-white dark:bg-gray-700">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Free Resources Section -->
+            <div class="mb-10">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-bold flex items-center">
+                        <i class="fas fa-gift text-green-500 mr-2 text-sm"></i>
+                        Free Resources
+                    </h2>
+                    <span class="text-xs text-gray-500">25+ free items</span>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Free Item 1 - System Design Cheat Sheet -->
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <div class="w-8 h-8 bg-green-100 dark:bg-green-900 rounded flex items-center justify-center">
+                                <i class="fas fa-file-pdf text-green-600 dark:text-green-400 text-sm"></i>
+                            </div>
+                            <span class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded-full text-xs font-medium">FREE</span>
+                        </div>
+                        
+                        <h3 class="text-sm font-bold mb-1">System Design Cheat Sheet</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">
+                            Complete PDF guide with all important system design concepts, diagrams, and trade-offs.
+                        </p>
+                        
+                        <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-3">
+                            <i class="fas fa-file-pdf mr-1"></i>
+                            <span>PDF (2.5 MB)</span>
+                            <i class="fas fa-download ml-3 mr-1"></i>
+                            <span>1.2k downloads</span>
+                        </div>
+                        
+                        <a href="#" class="block w-full text-center bg-green-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-green-700">
+                            <i class="fas fa-download mr-1"></i> Download Free
+                        </a>
+                    </div>
+
+                    <!-- Free Item 2 - Database Indexing Guide -->
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <div class="w-8 h-8 bg-green-100 dark:bg-green-900 rounded flex items-center justify-center">
+                                <i class="fas fa-file-alt text-green-600 dark:text-green-400 text-sm"></i>
+                            </div>
+                            <span class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded-full text-xs font-medium">FREE</span>
+                        </div>
+                        
+                        <h3 class="text-sm font-bold mb-1">Database Indexing Guide</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">
+                            Comprehensive guide to B-Trees, Hash Indexes, and query optimization.
+                        </p>
+                        
+                        <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-3">
+                            <i class="fas fa-file-alt mr-1"></i>
+                            <span>Markdown (15 pages)</span>
+                            <i class="fas fa-download ml-3 mr-1"></i>
+                            <span>3.4k downloads</span>
+                        </div>
+                        
+                        <a href="#" class="block w-full text-center bg-green-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-green-700">
+                            <i class="fas fa-download mr-1"></i> Download Free
+                        </a>
+                    </div>
+
+                    <!-- Free Item 3 - Microservices Patterns -->
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <div class="w-8 h-8 bg-green-100 dark:bg-green-900 rounded flex items-center justify-center">
+                                <i class="fas fa-code text-green-600 dark:text-green-400 text-sm"></i>
+                            </div>
+                            <span class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded-full text-xs font-medium">FREE</span>
+                        </div>
+                        
+                        <h3 class="text-sm font-bold mb-1">Microservices Patterns</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">
+                            Code samples for service discovery, API gateway, and circuit breaker patterns.
+                        </p>
+                        
+                        <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-3">
+                            <i class="fab fa-github mr-1"></i>
+                            <span>GitHub Repo</span>
+                            <i class="fas fa-star ml-3 mr-1"></i>
+                            <span>856 stars</span>
+                        </div>
+                        
+                        <a href="#" class="block w-full text-center bg-green-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-green-700">
+                            <i class="fab fa-github mr-1"></i> View on GitHub
+                        </a>
+                    </div>
+
+                    <!-- Free Item 4 - Distributed Systems Notes -->
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <div class="w-8 h-8 bg-green-100 dark:bg-green-900 rounded flex items-center justify-center">
+                                <i class="fas fa-file-powerpoint text-green-600 dark:text-green-400 text-sm"></i>
+                            </div>
+                            <span class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-2 py-0.5 rounded-full text-xs font-medium">FREE</span>
+                        </div>
+                        
+                        <h3 class="text-sm font-bold mb-1">Distributed Systems Notes</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">
+                            Lecture notes on consensus, replication, and distributed transactions.
+                        </p>
+                        
+                        <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-3">
+                            <i class="fas fa-file-powerpoint mr-1"></i>
+                            <span>Slides (45 slides)</span>
+                            <i class="fas fa-download ml-3 mr-1"></i>
+                            <span>2.1k downloads</span>
+                        </div>
+                        
+                        <a href="#" class="block w-full text-center bg-green-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-green-700">
+                            <i class="fas fa-download mr-1"></i> Download Free
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Resources Section -->
+            <div class="mb-10">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-bold flex items-center">
+                        <i class="fas fa-crown text-yellow-500 mr-2 text-sm"></i>
+                        Premium Resources
+                    </h2>
+                    <span class="text-xs text-gray-500">15+ premium items</span>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Premium Item 1 - Complete System Design Course -->
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <div class="w-8 h-8 bg-yellow-100 dark:bg-yellow-900 rounded flex items-center justify-center">
+                                <i class="fas fa-video text-yellow-600 dark:text-yellow-400 text-sm"></i>
+                            </div>
+                            <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 px-2 py-0.5 rounded-full text-xs font-medium">PREMIUM</span>
+                        </div>
+                        
+                        <h3 class="text-sm font-bold mb-1">Complete System Design Course</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">
+                            20+ hours of video lectures covering 30+ system design problems with detailed solutions.
+                        </p>
+                        
+                        <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-3">
+                            <i class="fas fa-video mr-1"></i>
+                            <span>20 hours video</span>
+                            <i class="fas fa-file-alt ml-3 mr-1"></i>
+                            <span>500+ pages notes</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-base font-bold text-gray-900 dark:text-white">₹3,999</span>
+                            <button onclick="openPurchaseModal(1)" class="bg-indigo-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-indigo-700">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Premium Item 2 - Database Internals Masterclass -->
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <div class="w-8 h-8 bg-yellow-100 dark:bg-yellow-900 rounded flex items-center justify-center">
+                                <i class="fas fa-database text-yellow-600 dark:text-yellow-400 text-sm"></i>
+                            </div>
+                            <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 px-2 py-0.5 rounded-full text-xs font-medium">PREMIUM</span>
+                        </div>
+                        
+                        <h3 class="text-sm font-bold mb-1">Database Internals Masterclass</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">
+                            Deep dive into B-Trees, LSM Trees, MVCC, and transaction isolation with implementation.
+                        </p>
+                        
+                        <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-3">
+                            <i class="fas fa-video mr-1"></i>
+                            <span>15 hours video</span>
+                            <i class="fas fa-code ml-3 mr-1"></i>
+                            <span>Code included</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-base font-bold text-gray-900 dark:text-white">₹2,999</span>
+                            <button onclick="openPurchaseModal(2)" class="bg-indigo-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-indigo-700">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Premium Item 3 - Distributed Systems E-Book -->
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <div class="w-8 h-8 bg-yellow-100 dark:bg-yellow-900 rounded flex items-center justify-center">
+                                <i class="fas fa-book text-yellow-600 dark:text-yellow-400 text-sm"></i>
+                            </div>
+                            <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 px-2 py-0.5 rounded-full text-xs font-medium">PREMIUM</span>
+                        </div>
+                        
+                        <h3 class="text-sm font-bold mb-1">Distributed Systems E-Book</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">
+                            400+ page comprehensive book on distributed systems with real-world examples.
+                        </p>
+                        
+                        <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-3">
+                            <i class="fas fa-file-pdf mr-1"></i>
+                            <span>PDF, EPUB, MOBI</span>
+                            <i class="fas fa-star ml-3 mr-1"></i>
+                            <span>4.8/5 rating</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-base font-bold text-gray-900 dark:text-white">₹1,499</span>
+                            <button onclick="openPurchaseModal(3)" class="bg-indigo-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-indigo-700">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Premium Item 4 - Interview Preparation Kit -->
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <div class="flex items-start justify-between mb-2">
+                            <div class="w-8 h-8 bg-yellow-100 dark:bg-yellow-900 rounded flex items-center justify-center">
+                                <i class="fas fa-briefcase text-yellow-600 dark:text-yellow-400 text-sm"></i>
+                            </div>
+                            <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300 px-2 py-0.5 rounded-full text-xs font-medium">PREMIUM</span>
+                        </div>
+                        
+                        <h3 class="text-sm font-bold mb-1">Interview Preparation Kit</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">
+                            200+ interview questions with detailed solutions, tips, and mock interviews.
+                        </p>
+                        
+                        <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-3">
+                            <i class="fas fa-file-alt mr-1"></i>
+                            <span>300+ pages</span>
+                            <i class="fas fa-video ml-3 mr-1"></i>
+                            <span>5 mock interviews</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-base font-bold text-gray-900 dark:text-white">₹2,499</span>
+                            <button onclick="openPurchaseModal(4)" class="bg-indigo-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-indigo-700">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bundles Section -->
+            <div class="mb-10">
+                <h2 class="text-lg font-bold mb-4 flex items-center">
+                    <i class="fas fa-gem text-purple-500 mr-2 text-sm"></i>
+                    Value Bundles (Save 30%)
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <!-- Bundle 1 -->
+                    <div class="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900 dark:to-purple-900 border border-indigo-200 dark:border-indigo-700 rounded-lg p-5">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <span class="bg-indigo-600 text-white px-2 py-0.5 rounded text-xs font-medium mb-2 inline-block">BEST SELLER</span>
+                                <h3 class="text-base font-bold mb-1">Complete Backend Bundle</h3>
+                                <p class="text-xs text-gray-600 dark:text-gray-300 mb-2">
+                                    System Design Course + Database Masterclass + Interview Kit
+                                </p>
+                                <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-3">
+                                    <i class="fas fa-video mr-1"></i> 40+ hours
+                                    <i class="fas fa-file-alt ml-3 mr-1"></i> 1000+ pages
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-lg font-bold text-gray-900 dark:text-white">₹6,999</span>
+                                    <span class="text-xs text-gray-500 line-through">₹9,497</span>
+                                    <span class="text-green-600 text-xs font-medium">Save 26%</span>
+                                </div>
+                            </div>
+                            <button onclick="openPurchaseModal(5)" class="bg-indigo-600 text-white px-4 py-2 rounded text-xs font-medium hover:bg-indigo-700 whitespace-nowrap">
+                                Buy Bundle
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Bundle 2 -->
+                    <div class="bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-900 dark:to-red-900 border border-orange-200 dark:border-orange-700 rounded-lg p-5">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <span class="bg-orange-600 text-white px-2 py-0.5 rounded text-xs font-medium mb-2 inline-block">POPULAR</span>
+                                <h3 class="text-base font-bold mb-1">Interview Pro Bundle</h3>
+                                <p class="text-xs text-gray-600 dark:text-gray-300 mb-2">
+                                    Interview Kit + System Design Cheat Sheet + Mock Interviews
+                                </p>
+                                <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-3">
+                                    <i class="fas fa-question-circle mr-1"></i> 200+ questions
+                                    <i class="fas fa-video ml-3 mr-1"></i> 5 mock interviews
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-lg font-bold text-gray-900 dark:text-white">₹3,999</span>
+                                    <span class="text-xs text-gray-500 line-through">₹5,498</span>
+                                    <span class="text-green-600 text-xs font-medium">Save 27%</span>
+                                </div>
+                            </div>
+                            <button onclick="openPurchaseModal(6)" class="bg-orange-600 text-white px-4 py-2 rounded text-xs font-medium hover:bg-orange-700 whitespace-nowrap">
+                                Buy Bundle
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="mb-10">
+                <h2 class="text-lg font-bold mb-4">What Students Say</h2>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-bold text-sm">RK</div>
+                            <div class="ml-2">
+                                <p class="text-xs font-semibold">Rahul Kumar</p>
+                                <p class="text-xs text-gray-500">Senior Developer at Amazon</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">
+                            "The System Design course was a game-changer for my career. Cleared my interviews with confidence!"
+                        </p>
+                        <div class="flex mt-2 text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-bold text-sm">PS</div>
+                            <div class="ml-2">
+                                <p class="text-xs font-semibold">Priya Sharma</p>
+                                <p class="text-xs text-gray-500">Tech Lead at Google</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">
+                            "Database Internals Masterclass helped me understand how databases actually work. Highly recommended!"
+                        </p>
+                        <div class="flex mt-2 text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-bold text-sm">AV</div>
+                            <div class="ml-2">
+                                <p class="text-xs font-semibold">Ankit Verma</p>
+                                <p class="text-xs text-gray-500">Software Engineer at Microsoft</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">
+                            "The free resources alone are gold. Premium content is worth every penny!"
+                        </p>
+                        <div class="flex mt-2 text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div>
+                <h2 class="text-lg font-bold mb-4">Frequently Asked Questions</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <h3 class="text-sm font-bold mb-1">How do I access purchased materials?</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">After purchase, you'll get instant access via email and your account dashboard. All materials are downloadable.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <h3 class="text-sm font-bold mb-1">Are the materials updated?</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Yes! All premium materials get free updates for 1 year. You'll be notified when new content is added.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <h3 class="text-sm font-bold mb-1">Can I get a refund?</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">7-day money-back guarantee if you're not satisfied with the purchase.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <h3 class="text-sm font-bold mb-1">Are there group discounts?</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Yes! For teams of 5 or more, contact us for special pricing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== PURCHASE MODAL ========== -->
+    <div id="purchaseModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Purchase Item</h3>
+                <button onclick="closePurchaseModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="purchaseDetails" class="mb-4 p-3 bg-gray-50 dark:bg-gray-700 rounded">
+                <!-- Item details will be filled by JavaScript -->
+            </div>
+            
+            <form id="purchaseForm" onsubmit="submitPurchase(event)">
+                <div class="mb-3">
+                    <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name</label>
+                    <input type="text" required class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700">
+                </div>
+                
+                <div class="mb-3">
+                    <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Email Address</label>
+                    <input type="email" required class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Payment Method</label>
+                    <select class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700">
+                        <option>Credit/Debit Card</option>
+                        <option>UPI (Google Pay, PhonePe, etc.)</option>
+                        <option>Net Banking</option>
+                        <option>PayPal</option>
+                    </select>
+                </div>
+                
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-sm text-gray-600 dark:text-gray-400">Amount:</span>
+                    <span id="purchaseAmount" class="text-xl font-bold text-indigo-600">₹3,999</span>
+                </div>
+                
+                <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded text-sm font-medium hover:bg-indigo-700">
+                    Proceed to Payment
+                </button>
+                
+                <p class="text-xs text-gray-500 dark:text-gray-400 text-center mt-3">
+                    <i class="fas fa-lock mr-1"></i>
+                    Secure payment. 7-day money-back guarantee.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER - Smaller ========== -->
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="/components/header-footer.js"></script>
+
+    <!-- JavaScript -->
+    <script src="/js/theme.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn')?.addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        // Item data
+        const items = {
+            1: { name: 'Complete System Design Course', price: 3999 },
+            2: { name: 'Database Internals Masterclass', price: 2999 },
+            3: { name: 'Distributed Systems E-Book', price: 1499 },
+            4: { name: 'Interview Preparation Kit', price: 2499 },
+            5: { name: 'Complete Backend Bundle', price: 6999 },
+            6: { name: 'Interview Pro Bundle', price: 3999 }
+        };
+
+        // Open purchase modal
+        function openPurchaseModal(itemId) {
+            const item = items[itemId];
+            if (!item) return;
+            
+            document.getElementById('purchaseDetails').innerHTML = `
+                <p class="text-sm font-semibold text-gray-900 dark:text-white">${item.name}</p>
+                <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Price: ₹${item.price}</p>
+            `;
+            
+            document.getElementById('purchaseAmount').textContent = `₹${item.price}`;
+            document.getElementById('purchaseModal').classList.remove('hidden');
+        }
+
+        // Close purchase modal
+        function closePurchaseModal() {
+            document.getElementById('purchaseModal').classList.add('hidden');
+        }
+
+        // Submit purchase form
+        function submitPurchase(event) {
+            event.preventDefault();
+            
+            // In real implementation, this would send data to backend
+            alert('Redirecting to payment gateway...');
+            
+            // Redirect to payment page
+            window.location.href = '/payment.html';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('purchaseModal');
+            if (event.target === modal) {
+                closePurchaseModal();
+            }
+        }
+    </script>
+</body>
+</html>

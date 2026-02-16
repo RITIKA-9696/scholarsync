@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1:1 Mentoring - ScholarSync</title>
+    
+    <!-- Tailwind CSS with Dark Mode -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontSize: {
+                        'xs': '0.75rem',
+                        'sm': '0.875rem',
+                        'base': '1rem',
+                        'lg': '1.125rem',
+                        'xl': '1.25rem',
+                        '2xl': '1.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Flatpickr for Calendar -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { font-size: 14px; }
+        * { animation: none !important; transition: none !important; }
+        
+        /* Time slot styling */
+        .time-slot {
+            @apply border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-xs text-center cursor-pointer hover:bg-indigo-50 dark:hover:bg-indigo-900;
+        }
+        .time-slot.selected {
+            @apply bg-indigo-600 text-white border-indigo-600;
+        }
+        .time-slot.booked {
+            @apply bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 ">
+   
+    <!-- ========== Header ========== -->
+    <div id="header-placeholder"></div>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="pt-14 pb-12 ">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                    1:1 Mentoring <span class="text-indigo-600 dark:text-indigo-400">Sessions</span>
+                </h1>
+                <p class="text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                    Get personalized guidance from an industry expert with 12+ years of experience at Google, Amazon, and Unacademy. 
+                    Perfect for career guidance, doubt clearing, and deep technical discussions.
+                </p>
+            </div>
+
+            <!-- Mentor Profile -->
+            <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 mb-8">
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <div class="w-24 h-24 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center">
+                        <span class="text-white text-3xl font-bold">AB</span>
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <h2 class="text-xl font-bold mb-1">Satish Kale</h2>
+                        <p class="text-sm text-indigo-600 dark:text-indigo-400 mb-2">Staff Engineer @ Google (ex-Amazon, Unacademy)</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 max-w-2xl">
+                            12+ years of experience in building scalable systems. Expert in Databases, System Design, and Distributed Systems. 
+                            Mentored 1000+ engineers who now work at top tech companies.
+                        </p>
+                    </div>
+                    <div class="flex gap-2">
+                        <div class="text-center px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                            <div class="text-xl font-bold text-indigo-600">1000+</div>
+                            <div class="text-xs text-gray-600 dark:text-gray-400">Mentees</div>
+                        </div>
+                        <div class="text-center px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                            <div class="text-xl font-bold text-indigo-600">4.9</div>
+                            <div class="text-xs text-gray-600 dark:text-gray-400">Rating</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Session Types -->
+            <h2 class="text-lg font-bold mb-4">Choose Your Session Type</h2>
+            <div class="grid md:grid-cols-3 gap-4 mb-8">
+                <!-- Career Guidance -->
+                <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5">
+                    <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-3">
+                        <i class="fas fa-bullseye text-blue-600 dark:text-blue-400 text-lg"></i>
+                    </div>
+                    <h3 class="text-base font-bold mb-2">Career Guidance</h3>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">
+                        Get advice on career growth, resume review, interview preparation, and role selection.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">₹2,499</span>
+                        <span class="text-xs text-gray-500">/ 60 mins</span>
+                    </div>
+                </div>
+
+                <!-- Technical Mentoring -->
+                <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5">
+                    <div class="w-10 h-10 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-3">
+                        <i class="fas fa-code text-purple-600 dark:text-purple-400 text-lg"></i>
+                    </div>
+                    <h3 class="text-base font-bold mb-2">Technical Mentoring</h3>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">
+                        Deep dive into system design, databases, distributed systems with hands-on guidance.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">₹3,499</span>
+                        <span class="text-xs text-gray-500">/ 90 mins</span>
+                    </div>
+                </div>
+
+                <!-- Mock Interview -->
+                <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5">
+                    <div class="w-10 h-10 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-3">
+                        <i class="fas fa-users text-green-600 dark:text-green-400 text-lg"></i>
+                    </div>
+                    <h3 class="text-base font-bold mb-2">Mock Interview</h3>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">
+                        Real interview experience with feedback on system design, problem-solving, and communication.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">₹3,999</span>
+                        <span class="text-xs text-gray-500">/ 90 mins</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Section -->
+            <div class="grid lg:grid-cols-3 gap-6">
+                <!-- Left Column - Calendar & Time Slots -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5">
+                        <h2 class="text-base font-bold mb-4">Select Date & Time</h2>
+                        
+                        <!-- Calendar -->
+                        <div class="mb-6">
+                            <input type="text" id="calendar" class="w-full p-3 border border-gray-200 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-sm" placeholder="Select date">
+                        </div>
+
+                        <!-- Time Slots -->
+                        <div>
+                            <h3 class="text-sm font-semibold mb-3">Available Time Slots</h3>
+                            <div class="grid grid-cols-4 gap-2">
+                                <!-- Morning Slots -->
+                                <div class="time-slot" data-time="09:00">9:00 AM</div>
+                                <div class="time-slot" data-time="10:00">10:00 AM</div>
+                                <div class="time-slot" data-time="11:00">11:00 AM</div>
+                                <div class="time-slot" data-time="12:00">12:00 PM</div>
+                                
+                                <!-- Afternoon Slots -->
+                                <div class="time-slot" data-time="14:00">2:00 PM</div>
+                                <div class="time-slot" data-time="15:00">3:00 PM</div>
+                                <div class="time-slot" data-time="16:00">4:00 PM</div>
+                                <div class="time-slot" data-time="17:00">5:00 PM</div>
+                                
+                                <!-- Evening Slots -->
+                                <div class="time-slot" data-time="18:00">6:00 PM</div>
+                                <div class="time-slot" data-time="19:00">7:00 PM</div>
+                                <div class="time-slot" data-time="20:00">8:00 PM</div>
+                                <div class="time-slot booked" data-time="21:00">9:00 PM</div>
+                            </div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                All times are in IST. Slots are 60/90 minutes based on session type.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Booking Summary -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5 sticky top-20">
+                        <h2 class="text-base font-bold mb-4">Booking Summary</h2>
+                        
+                        <!-- Session Type Selection -->
+                        <div class="mb-4">
+                            <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">Session Type</label>
+                            <select id="sessionType" class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700" onchange="updateSummary()">
+                                <option value="career" data-price="2499" data-duration="60">Career Guidance - ₹2,499 (60 mins)</option>
+                                <option value="technical" data-price="3499" data-duration="90">Technical Mentoring - ₹3,499 (90 mins)</option>
+                                <option value="mock" data-price="3999" data-duration="90">Mock Interview - ₹3,999 (90 mins)</option>
+                            </select>
+                        </div>
+
+                        <!-- Selected Details -->
+                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-4">
+                            <h3 class="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2">SELECTED SLOT</h3>
+                            <div id="selectedSlot" class="text-sm text-gray-600 dark:text-gray-300">
+                                <p class="mb-1"><i class="far fa-calendar mr-2 text-indigo-600"></i>No date selected</p>
+                                <p><i class="far fa-clock mr-2 text-indigo-600"></i>No time selected</p>
+                            </div>
+                        </div>
+
+                        <!-- Price Breakdown -->
+                        <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mb-4">
+                            <div class="flex justify-between mb-2 text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">Session Fee</span>
+                                <span id="sessionFee" class="font-medium">₹2,499</span>
+                            </div>
+                            <div class="flex justify-between mb-2 text-sm">
+                                <span class="text-gray-600 dark:text-gray-400">GST (18%)</span>
+                                <span id="gst" class="font-medium">₹450</span>
+                            </div>
+                            <div class="flex justify-between font-bold text-base mt-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+                                <span>Total</span>
+                                <span id="totalAmount" class="text-indigo-600">₹2,949</span>
+                            </div>
+                        </div>
+
+                        <!-- Book Button -->
+                        <button onclick="openBookingModal()" class="w-full bg-indigo-600 text-white py-3 rounded text-sm font-medium hover:bg-indigo-700">
+                            Proceed to Book
+                        </button>
+
+                        <p class="text-xs text-gray-500 dark:text-gray-400 text-center mt-3">
+                            <i class="fas fa-shield-alt mr-1"></i>
+                            Free cancellation up to 24 hours before
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="mt-10">
+                <h2 class="text-lg font-bold mb-4">What Mentees Say</h2>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-bold text-sm">SN</div>
+                            <div class="ml-2">
+                                <p class="text-xs font-semibold">Sneha Nair</p>
+                                <p class="text-xs text-gray-500">SDE-2 at Microsoft</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">
+                            "The mock interview session was incredibly helpful. Got detailed feedback and cleared my Amazon interview!"
+                        </p>
+                        <div class="flex mt-2 text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-bold text-sm">RP</div>
+                            <div class="ml-2">
+                                <p class="text-xs font-semibold">Rahul Patel</p>
+                                <p class="text-xs text-gray-500">Tech Lead at Google</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">
+                            "Career guidance session helped me transition from backend to distributed systems. Worth every penny!"
+                        </p>
+                        <div class="flex mt-2 text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-bold text-sm">AK</div>
+                            <div class="ml-2">
+                                <p class="text-xs font-semibold">Ankit Kumar</p>
+                                <p class="text-xs text-gray-500">Senior Engineer at Uber</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">
+                            "The system design session cleared all my concepts. Now I can design scalable systems with confidence."
+                        </p>
+                        <div class="flex mt-2 text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="mt-10">
+                <h2 class="text-lg font-bold mb-4">Frequently Asked Questions</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <h3 class="text-sm font-bold mb-1">How do I book a session?</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Select your preferred date and time from the calendar, choose session type, and complete payment. You'll receive a confirmation email with Google Meet link.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <h3 class="text-sm font-bold mb-1">Can I reschedule?</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Yes, you can reschedule up to 24 hours before the session. Use the link in your confirmation email or contact support.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <h3 class="text-sm font-bold mb-1">What platform do you use?</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">All sessions are conducted on Google Meet. The link will be shared in the confirmation email and reminder.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                        <h3 class="text-sm font-bold mb-1">Can I get a recording?</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Yes, sessions are recorded and shared with you for future reference, subject to your consent.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+   <!-- ========== BOOKING MODAL ========== -->
+    <div id="bookingModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Complete Your Booking</h3>
+                <button onclick="closeBookingModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="bookingSummary" class="mb-4 p-3 bg-gray-50 dark:bg-gray-700 rounded text-sm">
+                <!-- Will be filled by JavaScript -->
+            </div>
+            
+            <form id="bookingForm" onsubmit="submitBooking(event)">
+                <div class="mb-3">
+                    <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name *</label>
+                    <input type="text" required class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700">
+                </div>
+                
+                <div class="mb-3">
+                    <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Email Address *</label>
+                    <input type="email" required class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700">
+                </div>
+                
+                <div class="mb-3">
+                    <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Phone Number *</label>
+                    <input type="tel" required class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700">
+                </div>
+                
+                <div class="mb-3">
+                    <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Topics to Discuss (Optional)</label>
+                    <textarea rows="3" class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700" placeholder="e.g., System Design, Career advice, specific problems..."></textarea>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="flex items-center">
+                        <input type="checkbox" class="mr-2">
+                        <span class="text-xs text-gray-600 dark:text-gray-400">I agree to the <a href="#" class="text-indigo-600">terms and conditions</a></span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded text-sm font-medium hover:bg-indigo-700">
+                    Pay & Confirm Booking
+                </button>
+                
+                <p class="text-xs text-gray-500 dark:text-gray-400 text-center mt-3">
+                    <i class="fas fa-lock mr-1"></i>
+                    Secure payment. Cancel up to 24 hours before.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="/components/header-footer.js"></script>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="/js/theme.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn')?.addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        // Initialize Calendar
+        flatpickr("#calendar", {
+            minDate: "today",
+            maxDate: new Date().fp_incr(30),
+            dateFormat: "d M, Y",
+            onChange: function(selectedDates, dateStr, instance) {
+                updateSummary();
+            }
+        });
+
+        // Time slot selection
+        let selectedTime = null;
+        document.querySelectorAll('.time-slot:not(.booked)').forEach(slot => {
+            slot.addEventListener('click', function() {
+                document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedTime = this.dataset.time;
+                updateSummary();
+            });
+        });
+
+        // Update booking summary
+        function updateSummary() {
+            const sessionSelect = document.getElementById('sessionType');
+            const selectedOption = sessionSelect.options[sessionSelect.selectedIndex];
+            const price = parseInt(selectedOption.dataset.price);
+            const duration = selectedOption.dataset.duration;
+            
+            // Calculate GST and total
+            const gst = Math.round(price * 0.18);
+            const total = price + gst;
+            
+            // Update display
+            document.getElementById('sessionFee').textContent = `₹${price}`;
+            document.getElementById('gst').textContent = `₹${gst}`;
+            document.getElementById('totalAmount').textContent = `₹${total}`;
+            
+            // Update selected slot display
+            const dateInput = document.getElementById('calendar');
+            const selectedDate = dateInput.value || 'No date selected';
+            const timeDisplay = selectedTime ? selectedTime : 'No time selected';
+            
+            document.getElementById('selectedSlot').innerHTML = `
+                <p class="mb-1"><i class="far fa-calendar mr-2 text-indigo-600"></i>${selectedDate}</p>
+                <p><i class="far fa-clock mr-2 text-indigo-600"></i>${timeDisplay} (${duration} mins)</p>
+            `;
+        }
+
+        // Open booking modal
+        function openBookingModal() {
+            const dateInput = document.getElementById('calendar');
+            if (!dateInput.value || !selectedTime) {
+                alert('Please select both date and time slot');
+                return;
+            }
+            
+            const sessionSelect = document.getElementById('sessionType');
+            const selectedOption = sessionSelect.options[sessionSelect.selectedIndex];
+            const sessionType = selectedOption.text.split(' - ')[0];
+            const total = document.getElementById('totalAmount').textContent;
+            
+            document.getElementById('bookingSummary').innerHTML = `
+                <p class="text-sm font-semibold mb-2">Booking Details:</p>
+                <p class="text-xs mb-1"><span class="font-medium">Session:</span> ${sessionType}</p>
+                <p class="text-xs mb-1"><span class="font-medium">Date:</span> ${dateInput.value}</p>
+                <p class="text-xs mb-1"><span class="font-medium">Time:</span> ${selectedTime}</p>
+                <p class="text-xs"><span class="font-medium">Total:</span> ${total}</p>
+            `;
+            
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        // Close booking modal
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        // Submit booking
+        function submitBooking(event) {
+            event.preventDefault();
+            alert('Booking confirmed! Check your email for meeting link.');
+            window.location.href = '/booking-confirmation.html';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('bookingModal');
+            if (event.target === modal) {
+                closeBookingModal();
+            }
+        }
+
+        // Initialize summary
+        updateSummary();
+    </script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ScholarSync</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontSize: {
+                        'xs': '0.75rem',
+                        'sm': '0.875rem',
+                        'base': '1rem',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { font-size: 14px; background-color: #f9fafb; }
+        * { animation: none !important; transition: none !important; }
+        
+        .login-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .dark .login-bg {
+            background: linear-gradient(135deg, #312e81 0%, #4c1d95 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900">
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full">
+            <!-- Logo and Title -->
+            <div class="text-center mb-8">
+                <a href="/" class="inline-block text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">
+                    ScholarSync
+                </a>
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Welcome Back!</h2>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    Sign in to access your account and continue learning
+                </p>
+            </div>
+
+            <!-- Login Card -->
+            <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg overflow-hidden">
+                <!-- Header Tabs -->
+                <div class="flex border-b border-gray-200 dark:border-gray-700">
+                    <button class="flex-1 px-4 py-3 text-sm font-medium text-indigo-600 border-b-2 border-indigo-600 bg-indigo-50 dark:bg-indigo-900/30">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </button>
+                    <a href="/signup.html" class="flex-1 px-4 py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-indigo-600 text-center block hover:bg-gray-50 dark:hover:bg-gray-700">
+                        <i class="fas fa-user-plus mr-2"></i>Sign Up
+                    </a>
+                </div>
+
+                <!-- Login Form -->
+                <div class="p-6">
+                    <form id="loginForm" onsubmit="handleLogin(event)">
+                        <!-- Email -->
+                        <div class="mb-4">
+                            <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                Email Address <span class="text-red-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-envelope text-gray-400 text-sm"></i>
+                                </div>
+                                <input type="email" id="email" required 
+                                       class="w-full pl-10 pr-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                                       placeholder="john@example.com">
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-4">
+                            <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                Password <span class="text-red-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-lock text-gray-400 text-sm"></i>
+                                </div>
+                                <input type="password" id="password" required 
+                                       class="w-full pl-10 pr-10 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                                       placeholder="••••••••">
+                                <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-indigo-600">
+                                    <i class="fas fa-eye" id="passwordToggle"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Remember Me & Forgot Password -->
+                        <div class="flex items-center justify-between mb-6">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 mr-2">
+                                <span class="text-xs text-gray-600 dark:text-gray-400">Remember me</span>
+                            </label>
+                            <button type="button" onclick="openForgotPasswordModal()" class="text-xs text-indigo-600 hover:text-indigo-700 font-medium">
+                                Forgot password?
+                            </button>
+                        </div>
+
+                        <!-- Login Button -->
+                        <button type="submit" 
+                                class="w-full bg-indigo-600 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-indigo-700 mb-4 shadow-sm">
+                            <i class="fas fa-sign-in-alt mr-2"></i>
+                            Sign In
+                        </button>
+
+                        <!-- Social Login -->
+                        <div class="relative my-6">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-2 bg-white dark:bg-gray-800 text-gray-500">Or continue with</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <button type="button" onclick="socialLogin('google')" 
+                                    class="flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                                <i class="fab fa-google text-red-600 mr-2"></i>
+                                Google
+                            </button>
+                            <button type="button" onclick="socialLogin('github')" 
+                                    class="flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                                <i class="fab fa-github text-gray-900 dark:text-white mr-2"></i>
+                                GitHub
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Sign Up Link -->
+                    <p class="text-center text-xs text-gray-600 dark:text-gray-400 mt-6">
+                        Don't have an account? 
+                        <a href="/signup.html" class="text-indigo-600 font-medium hover:text-indigo-700">
+                            Sign up for free
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="mt-8 grid grid-cols-3 gap-3 text-center">
+                <div class="p-3">
+                    <i class="fas fa-book-open text-indigo-600 text-xl mb-1"></i>
+                    <p class="text-xs font-medium text-gray-700 dark:text-gray-300">50+ Resources</p>
+                </div>
+                <div class="p-3">
+                    <i class="fas fa-video text-indigo-600 text-xl mb-1"></i>
+                    <p class="text-xs font-medium text-gray-700 dark:text-gray-300">30+ Workshops</p>
+                </div>
+                <div class="p-3">
+                    <i class="fas fa-users text-indigo-600 text-xl mb-1"></i>
+                    <p class="text-xs font-medium text-gray-700 dark:text-gray-300">10k+ Community</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white">Reset Password</h3>
+                <button onclick="closeForgotPasswordModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                Enter your email address and we'll send you a link to reset your password.
+            </p>
+            
+            <form id="forgotPasswordForm" onsubmit="handleForgotPassword(event)">
+                <div class="mb-4">
+                    <input type="email" id="resetEmail" required 
+                           class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700"
+                           placeholder="Enter your email">
+                </div>
+                
+                <div class="flex gap-2">
+                    <button type="button" onclick="closeForgotPasswordModal()" 
+                            class="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50 dark:hover:bg-gray-700">
+                        Cancel
+                    </button>
+                    <button type="submit" 
+                            class="flex-1 bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700">
+                        Send Reset Link
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Reset Link Sent Modal -->
+    <div id="resetLinkSentModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full text-center">
+            <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check-circle text-green-600 dark:text-green-400 text-3xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Check Your Email</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                We've sent a password reset link to your email address.
+            </p>
+            <button onclick="closeResetLinkSentModal()" class="bg-indigo-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700">
+                OK, Got It
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Toast Notification -->
+    <div id="toastNotification" class="hidden fixed bottom-4 right-4 px-4 py-2 rounded-lg text-sm shadow-lg z-50"></div>
+
+    <script src="./js/common.js"></script>
+    
+    <script>
+        // Toggle password visibility
+        function togglePassword() {
+            const input = document.getElementById('password');
+            const icon = document.getElementById('passwordToggle');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Forgot Password Modal
+        function openForgotPasswordModal() {
+            document.getElementById('forgotPasswordModal').classList.remove('hidden');
+        }
+
+        function closeForgotPasswordModal() {
+            document.getElementById('forgotPasswordModal').classList.add('hidden');
+        }
+
+        function handleForgotPassword(event) {
+            event.preventDefault();
+            closeForgotPasswordModal();
+            document.getElementById('resetLinkSentModal').classList.remove('hidden');
+        }
+
+        function closeResetLinkSentModal() {
+            document.getElementById('resetLinkSentModal').classList.add('hidden');
+        }
+
+        // Handle Login
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Demo credentials
+            if (email === 'admin@scholarsyncverse.com' && password === 'admin123') {
+                showToast('Login successful! Redirecting...', 'success');
+                setTimeout(() => {
+                    window.location.href = 'http://localhost:3001/dashboard.html';
+                }, 1500);
+            } else if (email === 'user@example.com' && password === 'user123') {
+                showToast('Login successful! Redirecting...', 'success');
+                setTimeout(() => {
+                    window.location.href = '/dashboard.html';
+                }, 1500);
+            } else {
+                showToast('Invalid email or password', 'error');
+            }
+        }
+
+        // Social Login
+        function socialLogin(provider) {
+            showToast(`Redirecting to ${provider} login...`, 'info');
+        }
+
+        // Toast Notification
+        function showToast(message, type) {
+            const toast = document.getElementById('toastNotification');
+            toast.textContent = message;
+            toast.className = `fixed bottom-4 right-4 px-4 py-2 rounded-lg text-sm shadow-lg z-50 ${
+                type === 'success' ? 'bg-green-600 text-white' :
+                type === 'error' ? 'bg-red-600 text-white' :
+                'bg-blue-600 text-white'
+            }`;
+            toast.classList.remove('hidden');
+            
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
